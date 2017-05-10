@@ -245,8 +245,8 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
     }
     CGFloat left = currentPoint.x;
     CGFloat right = WINDOWS.width - currentPoint.x;
-    CGFloat top = currentPoint.y;
-    CGFloat bottom = WINDOWS.height - currentPoint.y;
+    CGFloat top = currentPoint.y+64;
+    CGFloat bottom = WINDOWS.height - currentPoint.y-49-64;
     ButtonDirection direction = ButtonDirectionLeft;
     CGFloat minDistance = left;
     if (right < minDistance) {
@@ -263,11 +263,20 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
     NSInteger topOrButtom;
     if (self.superview.center.y<_viewHeight/2+64) {
         topOrButtom=_viewHeight/2+64;
-    }else if (self.superview.center.y>WINDOWS.height-49-_viewHeight/2){
-        topOrButtom=WINDOWS.height-49-_viewHeight/2;
+    }else if (self.superview.center.y>WINDOWS.height-49-_viewHeight/2-64){
+        topOrButtom=WINDOWS.height-49-_viewHeight/2-64;
     }else{
         topOrButtom=self.superview.center.y;
     }
+    NSInteger leftOrRight;
+    if (self.superview.center.x<_viewWidth/2) {
+        leftOrRight=_viewWidth/2;
+    }else if (self.superview.center.x>WINDOWS.width-_viewWidth/2){
+        leftOrRight=WINDOWS.width-_viewWidth/2;
+    }else{
+        leftOrRight=self.superview.center.x;
+    }
+
     switch (direction) {
         case ButtonDirectionLeft:
         {
@@ -293,7 +302,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         case ButtonDirectionTop:
         {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2+64);
+                self.superview.center = CGPointMake(leftOrRight, self.superview.frame.size.height/2+64);
             }];
             if ([self.suspendDelegate respondsToSelector:@selector(dragToTheTop)]) {
                 [self.suspendDelegate dragToTheTop];
@@ -303,7 +312,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         case ButtonDirectionBottom:
         {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, WINDOWS.height - self.superview.frame.size.height/2-49);
+                self.superview.center = CGPointMake(leftOrRight, WINDOWS.height - self.superview.frame.size.height/2-49);
             }];
             if ([self.suspendDelegate respondsToSelector:@selector(dragToTheBottom)]) {
                 [self.suspendDelegate dragToTheBottom];
