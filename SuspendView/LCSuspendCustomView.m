@@ -10,10 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 typedef NS_ENUM(NSInteger,ButtonDirection){
-    Left,
-    Right   =1,
-    Top     =3,
-    Bottom  =4
+    ButtonDirectionLeft    =0,
+    ButtonDirectionRight   =1,
+    ButtonDirectionTop     =3,
+    ButtonDirectionBottom  =4
 };
 /**
  userInteractionEnabled=YES
@@ -247,18 +247,18 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
     CGFloat right = WINDOWS.width - currentPoint.x;
     CGFloat top = currentPoint.y;
     CGFloat bottom = WINDOWS.height - currentPoint.y;
-    ButtonDirection direction = Left;
+    ButtonDirection direction = ButtonDirectionLeft;
     CGFloat minDistance = left;
     if (right < minDistance) {
         minDistance = right;
-        direction = Right;
+        direction = ButtonDirectionRight;
     }
     if (top < minDistance) {
         minDistance = top;
-        direction = Top;
+        direction = ButtonDirectionTop;
     }
     if (bottom < minDistance) {
-        direction = Bottom;
+        direction = ButtonDirectionBottom;
     }
     NSInteger topOrButtom;
     if (self.superview.center.y<_viewHeight/2+64) {
