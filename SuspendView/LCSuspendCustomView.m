@@ -269,7 +269,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         topOrButtom=self.superview.center.y;
     }
     switch (direction) {
-        case Left:
+        case ButtonDirectionLeft:
         {
             
             [UIView animateWithDuration:0.3 animations:^{
@@ -280,7 +280,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
             }
             break;
         }
-        case Right:
+        case ButtonDirectionRight:
         {
             [UIView animateWithDuration:0.3 animations:^{
                 self.superview.center = CGPointMake(WINDOWS.width - self.superview.frame.size.width/2, topOrButtom);
@@ -290,7 +290,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
             }
             break;
         }
-        case Top:
+        case ButtonDirectionTop:
         {
             [UIView animateWithDuration:0.3 animations:^{
                 self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2+64);
@@ -300,7 +300,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
             }
             break;
         }
-        case Bottom:
+        case ButtonDirectionBottom:
         {
             [UIView animateWithDuration:0.3 animations:^{
                 self.superview.center = CGPointMake(self.superview.center.x, WINDOWS.height - self.superview.frame.size.height/2-49);
