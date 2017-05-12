@@ -5,6 +5,10 @@
 //  Created by care on 17/5/8.
 //  Copyright © 2017年 luochuan. All rights reserved.
 //
+/**
+博文地址:http://blog.csdn.net/luochuanad/article/details/71522241
+Github地址:https://github.com/LuochuanAD/OC-SuspendView/tree/master
+*/
 
 #import "LCSuspendCustomView.h"
 #import <AVFoundation/AVFoundation.h>
