@@ -13,6 +13,8 @@ Github地址:https://github.com/LuochuanAD/OC-SuspendView/tree/master
 #import "LCSuspendCustomView.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
+#define NavigationBarHeight 64
+#define TabBarHeight 49
 typedef NS_ENUM(NSInteger,ButtonDirection){
     ButtonDirectionLeft    =0,
     ButtonDirectionRight   =1,
@@ -249,8 +251,8 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
     }
     CGFloat left = currentPoint.x;
     CGFloat right = WINDOWS.width - currentPoint.x;
-    CGFloat top = currentPoint.y+64;
-    CGFloat bottom = WINDOWS.height - currentPoint.y-49-64;
+    CGFloat top = currentPoint.y+NavigationBarHeight;
+    CGFloat bottom = WINDOWS.height - currentPoint.y-TabBarHeight-NavigationBarHeight;
     ButtonDirection direction = ButtonDirectionLeft;
     CGFloat minDistance = left;
     if (right < minDistance) {
@@ -265,10 +267,10 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         direction = ButtonDirectionBottom;
     }
     NSInteger topOrButtom;
-    if (self.superview.center.y<_viewHeight/2+64) {
-        topOrButtom=_viewHeight/2+64;
-    }else if (self.superview.center.y>WINDOWS.height-49-_viewHeight/2-64){
-        topOrButtom=WINDOWS.height-49-_viewHeight/2-64;
+    if (self.superview.center.y<_viewHeight/2+NavigationBarHeight) {
+        topOrButtom=_viewHeight/2+NavigationBarHeight;
+    }else if (self.superview.center.y>WINDOWS.height-TabBarHeight-_viewHeight/2-NavigationBarHeight){
+        topOrButtom=WINDOWS.height-TabBarHeight-_viewHeight/2-NavigationBarHeight;
     }else{
         topOrButtom=self.superview.center.y;
     }
@@ -306,7 +308,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         case ButtonDirectionTop:
         {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(leftOrRight, self.superview.frame.size.height/2+64);
+                self.superview.center = CGPointMake(leftOrRight, self.superview.frame.size.height/2+NavigationBarHeight);
             }];
             if ([self.suspendDelegate respondsToSelector:@selector(dragToTheTop)]) {
                 [self.suspendDelegate dragToTheTop];
@@ -316,7 +318,7 @@ typedef NS_ENUM(NSInteger,ButtonDirection){
         case ButtonDirectionBottom:
         {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(leftOrRight, WINDOWS.height - self.superview.frame.size.height/2-49);
+                self.superview.center = CGPointMake(leftOrRight, WINDOWS.height - self.superview.frame.size.height/2-TabBarHeight);
             }];
             if ([self.suspendDelegate respondsToSelector:@selector(dragToTheBottom)]) {
                 [self.suspendDelegate dragToTheBottom];
