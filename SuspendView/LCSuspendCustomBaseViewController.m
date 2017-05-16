@@ -95,7 +95,7 @@
         if ([subView isKindOfClass:[UIButton class]]) {
             NSLog(@"点击了按钮");
             suspendCustomView.customButton.selected=!suspendCustomView.customButton.selected;
-            if (suspendCustomView.customButton.selected==NO) {
+            if (suspendCustomView.customButton.selected==YES) {
              [suspendCustomView.customButton setBackgroundImage:[UIImage imageNamed:@"button_on"] forState:UIControlStateNormal];
             }else{
             [suspendCustomView.customButton setBackgroundImage:[UIImage imageNamed:@"button_out"] forState:UIControlStateNormal];
