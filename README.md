@@ -51,11 +51,8 @@
  
  
  
-- (void)viewDidLoad {
+在viewDidLoad方法中加载以下4行代码
 
-
-    [super viewDidLoad];
-    
     
     
     LCSuspendCustomBaseViewController *suspendVC=[[LCSuspendCustomBaseViewController alloc]init];
@@ -74,8 +71,11 @@
     
     
     
-}
-定制:
+
+
+
+
+自定制:
 
 
 如果项目中有导航栏或标签栏  修改#define NavigationBarHeight 64和 #define TabBarHeight 49的值可以限定悬浮窗口的活动范围.
