@@ -21,7 +21,7 @@
 
 
 
-使用:
+使用:在所有页面都能出现悬浮窗口,即使有弹框,也能显示.
 
 
 /**悬浮视图的类型
@@ -75,6 +75,46 @@
     
     
 }
+定制:
+
+
+如果项目中有导航栏或标签栏  修改#define NavigationBarHeight 64和 #define TabBarHeight 49的值可以限定悬浮窗口的活动范围.
+
+
+遵守协议SuspendCustomViewDelegate  实现代理方法:可以判断是否点击和滑动到屏幕的哪个方向:
+
+- (void)suspendCustomViewClicked:(id)sender;//悬浮窗口点击方法
+
+
+
+- (void)dragToTheLeft;//滑动悬浮窗口到了左边
+
+
+
+- (void)dragToTheRight;//滑动悬浮窗口到了右边
+
+
+
+- (void)dragToTheTop;//滑动悬浮窗口到了顶部
+
+
+
+- (void)dragToTheBottom;//滑动悬浮窗口到了底部
+
+
+警告⚠️:如果你希望悬浮窗口不是一个单一的button/image/webView/scrollView  那么你需要将自定义控件的userInteractionEnabled重新设置为YES. 同时需要创建该控件的子类,并重写touchesBegan/touchesMoved/touchesEnded三个方法,添加代码:[[self nextResponder]touchesBegan:touches withEvent:event]... 这是为了不阻塞项目中其他控件响应链的传递.
+
+
+Bug❗️:该悬浮窗口有个问题:如果项目中有截屏的功能,就会不可用.  该问题未解决.
+
+
 
 
 博文地址:http://blog.csdn.net/luochuanad/article/details/71522241
+
+
+
+
+
+
+求star
